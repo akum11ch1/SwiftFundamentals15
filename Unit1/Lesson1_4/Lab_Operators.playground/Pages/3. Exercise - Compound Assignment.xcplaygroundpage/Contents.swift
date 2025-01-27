@@ -3,6 +3,11 @@
  
  Declare a variable whose value begins at 10. Using addition, update the value to 15 using the compound assignment operator. Using multiplication, update the value to 30 using compound assignment. Print out the variable's value after each assignment.
  */
+var number = 10
+number += 15
+print(number)
+number *= 30
+print(number)
 
 
 /*:
@@ -16,7 +21,17 @@
  
  Print the balance of your penny bank after each step.
  */
-
+var pennyBank = 0
+pennyBank += 10
+print(pennyBank)
+pennyBank += 20
+print(pennyBank)
+pennyBank -= 15
+print(pennyBank)
+pennyBank *= 3
+print(pennyBank)
+pennyBank -= 3
+print(pennyBank)
 
 /*:
 [Previous](@previous)  |  page 3 of 8  |  [Next: App Exercise - Counting](@next)
