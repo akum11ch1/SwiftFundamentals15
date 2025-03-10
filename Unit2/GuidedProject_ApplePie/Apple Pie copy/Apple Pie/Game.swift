@@ -11,26 +11,35 @@ struct Game {
     var word: String
     var incorrectMovesRemaining: Int
     var guessedLetters: [Character]
-    
-    mutating func playerGuessed(letter: Character) {
-        guessedLetters.append(letter)
-        if !word.contains(letter) {
-            incorrectMovesRemaining -= 1
-            if incorrectMovesRemaining == 0 {
+
+    var formattedWord: String {
+        var displayWord = ""
+        for letter in word {
+            if guessedLetters.contains(letter) {
+                displayWord += "\(letter)"
+            } else {
+                displayWord += "_"
             }
         }
+        return displayWord
     }
-    func newRound() {
-        let newWord = listOfWords.removeFirst()
-        currentGame = Game(word: newWord, incorrectMovesRemaining: incorrectMovesAllowed, guessedLetters: [])
-        updateUI()
+
+    var isWordGuessed: Bool {
+        return formattedWord == word
     }
-    @IBAction func letterButtonPressed(_ sender: UIButton) {
-        sender.isEnabled = false
-        let letterString = sender.title(for: .normal)!
-        let letter = Character(letterString.lowercased())
-        currentGame.playerGuessed(letter: letter)
-        updateUI()
+
+    var isGameOver: Bool {
+        return incorrectMovesRemaining == 0
     }
-    
+
+    mutating func makeGuess(letter: Character) -> Bool {
+        if word.contains(letter) {
+            guessedLetters.append(letter)
+            return true
+        } else {
+            incorrectMovesRemaining -= 1
+            return false
+        }
+    }
 }
+
